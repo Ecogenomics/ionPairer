@@ -63,7 +63,6 @@ module IonPairer
     end
     
     def to_yaml
-      p @name
       yaml = {:name => @name}
       if reverse
         yaml[:reverse => 'true']
@@ -81,7 +80,23 @@ module IonPairer
   
   class GraphvizReader
     class GraphvizContig
-      attr_accessor :node1_name, :node2_name
+      attr_reader :node1_name, :node2_name
+      
+      def fix_node_name(name)
+        if matches = name.match(/^\"(.*)\"$/)
+          return matches[1]
+        else
+          return name
+        end
+      end
+      
+      def node1_name=(name)
+        @node1_name = fix_node_name(name)
+      end
+      
+      def node2_name=(name)
+        @node2_name = fix_node_name(name)
+      end
       
       def contig_name
         if matches = @node1_name.match(/(.*)START$/)

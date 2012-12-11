@@ -361,7 +361,7 @@ describe 'the script' do
       end
     end
     
-    dot_filename = "#{links_basename}.dot"
+    dot_filename = "#{links_basename}.gv"
     png_filename = "#{links_basename}.png"
     svg_filename = "#{links_basename}.svg"
     filtered_filename = "#{links_basename}.filtered_links.csv"
